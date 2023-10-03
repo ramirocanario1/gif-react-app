@@ -22,3 +22,13 @@ export const getCategories = async () => {
   const res = await axios.get(categoriesUrl);
   return res.data.data.map((c) => c.name);
 };
+
+const trendingGifsUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=${limit}&offset=0&rating=g&bundle=messaging_non_clips`;
+export const getTrendingGifs = async () => {
+  const res = await axios.get(trendingGifsUrl);
+  const gifsData = res.data.data.map((g) => ({
+    id: g.id,
+    url: g.images.fixed_height.url,
+  }));
+  return gifsData;
+};

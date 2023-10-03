@@ -7,7 +7,7 @@ export default function Categories() {
   const { data, isLoading } = useQuery(["categories"], () => getCategories());
 
   return (
-    <section className="bg-color4 flex flex-col items-center w-64 p-4 py-8 gap-3 rounded-lg shadow-lg m-2">
+    <section className="bg-color4 flex flex-col items-center p-4 py-8 gap-3 rounded-lg shadow-lg m-2">
       <h1 className="text-2xl font-bold text-color1">🏷️ Categories </h1>
 
       <div className="flex flex-wrap justify-center gap-2 text-color2 items-center">
