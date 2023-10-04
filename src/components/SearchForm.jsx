@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { TbSearch } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchForm({ setSearch }) {
   const {
@@ -8,23 +10,29 @@ export default function SearchForm({ setSearch }) {
     setError,
     reset,
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (formData) => {
     setSearch(formData.search);
+    navigate(`/search/${formData.search}`);
   });
 
   return (
-    <form onSubmit={onSubmit} className="bg-color3 flex items-center flex-col p-5">
-      <div className="p-3 bg-color3 text-white flex flex-col gap-2">
-        <label htmlFor="search">Buscar gif</label>
-        <input
-          type="text"
-          placeholder="Perritos"
-          className="px-4 p-2 rounded-md shadow-lg w-72 text-color4"
-          {...register("search")}
-        />
+    <form onSubmit={onSubmit} className="bg-color4 flex items-center flex-col p-5 rounded-xl">
+      <div className="p-3 bg-color4 text-white flex flex-col gap-2 w-full max-w-4xl">
+        <label htmlFor="search">Buscar gifs</label>
+        <div className="flex">
+          <input
+            type="text"
+            placeholder="Perritos"
+            className="w-full px-5 py-3 text-lg text-black rounded-tl-lg rounded-bl-lg focus:outline-none"
+            {...register("search")}
+          />
+          <button className="bg-color1 text-color4 w-fit rounded-tr-lg rounded-br-lg text-2xl p-4 bg-gradient-to-tr from-color1 to-color2">
+            <TbSearch />
+          </button>
+        </div>
       </div>
-      <button className="bg-color1 text-color4 p-2 w-52 rounded-xl">Buscar GIFS!</button>
     </form>
   );
 }

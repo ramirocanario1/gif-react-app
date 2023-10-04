@@ -1,9 +1,14 @@
+import { TbBrandGithub, TbSailboat } from "react-icons/tb";
+
 export default function Header() {
   return (
-    <header>
-      <h1 className="text-2xl bg-color3 bg-gradient-to-r from-color3 to-color2 text-center text-white font-bold p-3 shadow-lg">
-        GIF App
+    <header className="text-4xl flex justify-between container px-4 py-2">
+      <h1 className="text-white flex items-center font-title font-extrabold gap-1 ">
+        <span className="text-blue-500">GIF</span>
+        <span className="">APP</span>
+        <TbSailboat className="text-blue-500" />
       </h1>
+      <TbBrandGithub className="text-white" />
     </header>
   );
 }

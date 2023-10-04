@@ -4,11 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        color1: "#B5CA8D",
-        color2: "#8BB174",
-        color3: "#426B69",
-        color4: "#2A4849",
-        color5: "#222E50",
+        color1: "#00C49A",
+        color2: "#F8E16C",
+        color3: "#FFC2B4",
+        color4: "#303030",
+        color5: "#121212",
+      },
+      fontFamily: {
+        sans: ["Sen", "serif"],
+        title: ["Gabarito", "cursive"],
       },
     },
   },
