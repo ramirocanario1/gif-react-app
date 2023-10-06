@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { TbHistory, TbSearch } from "react-icons/tb";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { BsStars } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 import nextId from "react-id-generator";
 
-export default function SearchForm() {
+export default function SearchForm({ term, suggestions }) {
   const [searchs, setSearchs] = useState([]);
-
-  const { term } = useParams();
 
   const { register, handleSubmit, setValue } = useForm();
 
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (formData) => {
-    setSearchs([formData.search, ...searchs]);
-    if (term) {
-      setValue("search", term);
+    if (formData.search.length > 0) {
+      setSearchs([formData.search, ...searchs]);
+      navigate(`/search/${formData.search}`);
     }
-    navigate(`/search/${formData.search}`);
   });
 
   useEffect(() => {
-    console.log(term);
+    if (term) {
+      setValue("search", term);
+    }
   }, [term]);
 
   return (
-    <form onSubmit={onSubmit} className="bg-color4 flex items-center flex-col p-5 rounded-xl">
+    <form onSubmit={onSubmit} className="bg-color4 flex items-center flex-col p-5 rounded-xl mb-6">
       <div className="p-3 bg-color4 text-white flex flex-col gap-2 w-full max-w-4xl">
         <label htmlFor="search">Search gifs</label>
         <div className="flex">
@@ -45,6 +45,16 @@ export default function SearchForm() {
             <RecentSearch search={s} key={nextId("recent-")} />
           ))}
         </div>
+        <div className=" rounded-lg p-5 shadow-2xl border-t-4 border-color1 mt-3">
+          <h2 className="flex items-center gap-2 text-xl">
+            <BsStars className="text-color2" /> Search suggestions...
+          </h2>
+          <div className="flex items-center gap-3 flex-wrap mt-5">
+            {suggestions?.map((s) => (
+              <SearchSuggestion key={s.name} search={s.name} />
+            ))}
+          </div>
+        </div>
       </div>
     </form>
   );
@@ -54,6 +64,15 @@ function RecentSearch({ search }) {
   return (
     <Link to={`/search/${search}`} className="flex items-center gap-1 text-md flex-shrink-0">
       <TbHistory />
+      {search}
+    </Link>
+  );
+}
+
+function SearchSuggestion({ search }) {
+  return (
+    <Link to={`/search/${search}`} className="flex items-center gap-1 text-md flex-shrink-0">
+      <TbSearch className="text-color1" />
       {search}
     </Link>
   );

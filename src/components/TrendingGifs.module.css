@@ -13,4 +13,5 @@
     background: rgb(2,0,36);
     background: linear-gradient(360deg, rgba(2,0,36,1) 15%, rgba(255,255,255,0) 100%);
     border-bottom: 4px solid orangered;
+    z-index: 2;
 }

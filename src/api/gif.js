@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_KEY } from "../../API_KEY";
 
 const URL = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
-const limit = 20;
+const limit = 50;
 
 const gifAPI = axios.create({
   baseURL: URL,
@@ -26,9 +26,11 @@ export const getCategories = async () => {
 const trendingGifsUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=${limit}&offset=0&rating=g&bundle=messaging_non_clips`;
 export const getTrendingGifs = async () => {
   const res = await axios.get(trendingGifsUrl);
-  const gifsData = res.data.data.map((g) => ({
-    id: g.id,
-    url: g.images.fixed_height.url,
-  }));
-  return gifsData;
+  return res.data.data;
+};
+
+const getSearchSuggestionsUrl = `https://api.giphy.com/v1/tags/related/`;
+export const getSearchSuggestions = async (search) => {
+  const res = await axios.get(`${getSearchSuggestionsUrl}${search}?api_key=${API_KEY}`);
+  return res.data.data;
 };

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { getGifs } from "../api/gif";
+import Gif from "./Gif";
 
 export default function SearchResults({ search }) {
   const { data, isLoading } = useQuery(["searchGifs", search], () => getGifs(search), {
@@ -17,7 +18,7 @@ export default function SearchResults({ search }) {
   return (
     <div className="flex flex-wrap justify-evenly bg-color5 gap-2">
       {gifs?.map((gif) => (
-        <img key={gif.id} src={gif.images.fixed_height.url} alt={gif.title} />
+        <Gif key={gif.id} gif={gif} />
       ))}
     </div>
   );
