@@ -16,7 +16,7 @@ export default function Categories() {
       <div className="flex flex-wrap justify-center gap-2 text-white items-center">
         {addEmojis(data)?.map((s) => (
           <span
-            className="hover:text-color2 transition-colors cursor-pointer hover:underline underline-offset-4"
+            className="hover:text-color2 transition-colors cursor-pointer hover:underline underline-offset-4 text-center"
             key={s}
           >
             {s}

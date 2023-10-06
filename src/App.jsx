@@ -9,8 +9,8 @@ export default function App() {
   return (
     <div className="bg-color5">
       <div className="container mx-auto">
-        <Header />
         <BrowserRouter>
+          <Header />
           <SearchGifs />
           <Routes>
             <Route path="/" element={<Home />} />

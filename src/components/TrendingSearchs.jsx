@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getTrendingSearchs } from "../api/gif";
 import { TbTrendingUp } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 export default function TrendingSearchs() {
   const { data, isLoading } = useQuery(["trendingSearchs"], () => getTrendingSearchs());
@@ -14,12 +15,13 @@ export default function TrendingSearchs() {
 
       <div className="flex flex-wrap justify-center gap-2 text-white items-center">
         {data?.map((s) => (
-          <span
+          <Link
+            to={`/search/${s}`}
             className="hover:text-color1 transition-colors cursor-pointer hover:underline underline-offset-4 text-center"
             key={s}
           >
             "{s}"
-          </span>
+          </Link>
         ))}
       </div>
     </section>

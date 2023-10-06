@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import SearchForm from "./SearchForm";
-import SearchResults from "./SearchResults";
+import { useParams } from "react-router-dom";
 
 export default function SearchGifs() {
-  const [search, setSearch] = useState("");
+  const params = useParams();
 
-  return (
-    <>
-      <SearchForm setSearch={setSearch} />
-      <SearchResults search={search} />
-    </>
-  );
+  useEffect(() => {
+    console.log(params);
+  }, [params]);
+
+  return <SearchForm />;
 }
